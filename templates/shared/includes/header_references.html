@@ -1,0 +1,67 @@
+{% load static %}
+<!--Navbar Start-->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <!-- LOGO -->
+        <a class="navbar-brand logo" href="{% url 'home' %}">
+            نت کپی
+        </a>
+
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <!--Nav Links-->
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-scroll-nav="0">خانه</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-scroll-nav="1">درباره من</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-scroll-nav="2">سرویس ها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-scroll-nav="3">نمونه کارها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-scroll-nav="4">وبلاگ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-scroll-nav="5">تماس با من</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--Navbar End-->
+
+<!--Home Section Start-->
+<section id="home" class="banner banner-centered" style="background-image: url('{% static 'shared/images/background/creative2-banner-bg.jpg' %}')" data-stellar-background-ratio=".7" data-scroll-index="0">
+    <!--Banner Content-->
+    <div class="banner-caption">
+        <h1>سلام من ارشیا صمیمی فر هستم</h1>
+        <p class="cd-headline clip mt-30">
+            <span>برنامه‌نویس پایتون و توسعه‌دهنده جنگو</span><br>
+            <span class="blc">متخصص در</span>
+            <span class="cd-words-wrapper">
+                <b class="is-visible">طراحی و توسعه وب</b>
+                <b>پیاده‌سازی پنل‌های مدیریتی</b>
+                <b>خودکارسازی و اسکریپت‌نویسی</b>
+                <b>دیتا و دیتابیس</b>
+                <b>شبکه و سخت افزار</b>
+            </span>
+        </p>
+    </div>
+
+    <div class="arrow bounce">
+        <a class="fa fa-chevron-down fa-2x" href="#" data-scroll-nav="1"></a>
+    </div>
+
+    <svg id="home-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1400 300" preserveAspectRatio="none">
+        <path class="p-curve" d="M-0.2,0.5c0,0-21.7,99.6,233.1,99.6s320.1,199.7,467.6,200.1S898.6,100,1167.6,100S1401,0,1401,0v301H0 L-0.2,0.5z"/>
+    </svg>
+</section>
+<!--Home Section End-->
