@@ -1,9 +1,9 @@
 from pathlib import Path
+
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -15,7 +15,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -29,8 +28,8 @@ INSTALLED_APPS = [
     # internal apps
     'account_module.apps.AccountModuleConfig',
     'home_module.apps.HomeModuleConfig',
-    'contact_module.apps.ContactModuleConfig',
     # external apps
+    'django_render_partial',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'resume.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
@@ -93,7 +91,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
@@ -104,7 +101,6 @@ TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/

@@ -1,7 +1,7 @@
 {% extends 'shared/_layout.html' %}
 {% load static %}
+{% load render_partial %}
 {% block content %}
-
     <!--About Section Start-->
     <section class="about pt-100 pb-100" data-scroll-index="1">
         <div class="container">
@@ -418,7 +418,6 @@
         </div>
     </section>
     <!--Blog Section End-->
-
     <!--Testimonials Section Start-->
     <section class="testimonials pt-100 pb-100" style="background-image: url('{% static 'shared/images/background/testimonials-bg.jpg' %}')">
         <div class="container">
@@ -463,7 +462,6 @@
         </div>
     </section>
     <!--Testimonials Section End-->
-
     <!--Contact Section Start-->
     <section class="contact pt-100 pb-100" data-scroll-index="5">
         <div class="container">
@@ -477,24 +475,28 @@
             </div>
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
+                    {% for error in contact_form.errors %}
+                        {{ error }}
+                    {% endfor %}
+
                     <!--Contact Form-->
-                    <form id='contact-form' method='POST'><input type='hidden' name='form-name' value='contactForm'/>
+                    <form id='contact-form' method='POST' novalidate> {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <!--name-->
-                                <input type="text" class="form-control con-validate" id="contact-name" placeholder="نام" minlength=3>
+                                {{ contact_form.full_name }}
                             </div>
                             <div class="col-md-6 form-group">
                                 <!--email-->
-                                <input type="email" class="form-control con-validate" id="contact-email" placeholder="ایمیل">
+                                {{ contact_form.phone }}
                             </div>
                             <div class="col-md-12 form-group">
                                 <!--message box-->
-                                <textarea class="form-control con-validate" id="contact-message" placeholder="چگونه ما میتوانیم به شما کمک کنیم؟" rows=6></textarea>
+                                {{ contact_form.message }}
                             </div>
                             <div class="col-md-12 text-center">
                                 <!--contact button-->
-                                <button id="contact-submit" class="mt-30 main-btn">
+                                <button id="contact-submit" class="mt-30 main-btn" type="submit">
                                     ارسال پیام
                                 </button>
                             </div>
