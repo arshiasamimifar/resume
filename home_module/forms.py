@@ -9,7 +9,12 @@ class ContactForm(forms.Form):
         widget=forms.TextInput(attrs={
             'placeholder': 'نام و نام خانوادگی',
             'class': 'form-control',
-        })
+        }),
+        error_messages={
+            'required': 'لطفاً نام و نام خانوادگی خود را وارد کنید.',
+            'min_length': 'نام و نام خانوادگی باید حداقل ۶ کاراکتر باشد.',
+            'max_length': 'طول نام و نام خانوادگی بیش از حد مجاز است.',
+        }
     )
 
     phone = forms.CharField(
@@ -22,9 +27,14 @@ class ContactForm(forms.Form):
         validators=[
             RegexValidator(
                 regex=r'^09\d{9}$',
-                message='تلفن همراه خود را درست وارد کنید!'
+                message='شماره تلفن همراه معتبر نیست. لطفاً با فرمت صحیح وارد کنید (مثال: 09123456789).'
             )
         ],
+        error_messages={
+            'required': 'لطفاً شماره تلفن همراه خود را وارد کنید.',
+            'min_length': 'شماره تلفن همراه باید دقیقاً ۱۱ رقم باشد.',
+            'max_length': 'شماره تلفن همراه باید دقیقاً ۱۱ رقم باشد.',
+        }
     )
 
     message = forms.CharField(
@@ -33,5 +43,10 @@ class ContactForm(forms.Form):
         widget=forms.Textarea(attrs={
             'placeholder': 'متن پیام شما',
             'class': 'form-control',
-        })
+        }),
+        error_messages={
+            'required': 'لطفاً متن پیام را وارد کنید.',
+            'min_length': 'متن پیام خیلی کوتاه است. لطفاً توضیحات بیشتری بنویسید.',
+            'max_length': 'متن پیام بیش از حد طولانی است. لطفاً پیام را کوتاه‌تر کنید.',
+        }
     )

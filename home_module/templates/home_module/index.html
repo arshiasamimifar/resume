@@ -313,111 +313,6 @@
     </section>
     <!--Portfolio Section End-->
 
-    <!--Blog Section Start-->
-    <section class="blogs pt-100 pb-100 bg-gray" data-scroll-index="4">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="heading text-center">
-                        <h6>وبلاگ</h6>
-                        <h2>آخرین خبرها</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="owl-carousel owl-theme">
-                    <!--Blogs Item-->
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                                <img src="{% static 'shared/images/blog/img-1.jpg' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                            <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="#">مطالعه بیشتر</a>
-                                    </span>
-                                <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Blogs Item-->
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                                <img src="{% static 'shared/images/blog/img-2.jpg' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                            <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="#">مطالعه بیشتر</a>
-                                    </span>
-                                <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Blogs Item-->
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                                <img src="{% static 'shared/images/blog/img-3.jpg' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                            <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="#">مطالعه بیشتر</a>
-                                    </span>
-                                <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Blogs Item-->
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                                <img src="{% static 'shared/images/blog/img-4.jpg' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                            <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="#">مطالعه بیشتر</a>
-                                    </span>
-                                <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <div class="blog-button pt-40">
-                        <a class="main-btn" href="#">مشاهده بیشتر</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Blog Section End-->
     <!--Testimonials Section Start-->
     <section class="testimonials pt-100 pb-100" style="background-image: url('{% static 'shared/images/background/testimonials-bg.jpg' %}')">
         <div class="container">
@@ -475,11 +370,16 @@
             </div>
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    {% for error in contact_form.errors %}
-                        {{ error }}
-                    {% endfor %}
-
                     <!--Contact Form-->
+                    {% if contact_form.errors %}
+                        {% for field, errors in contact_form.errors.items %}
+                            {% for error in errors %}
+                                <div class="alert alert-warning">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                     <form id='contact-form' method='POST' novalidate> {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 form-group">

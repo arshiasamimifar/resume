@@ -1,1 +1,172 @@
-$(window).on("load",function(){(setTimeout(function(){$(".preloader").addClass("loaded")},1e3),$(".portfolio-items").length)&&($(".portfolio-items").isotope(),$(".portfolio-filter ul li").on("click",function(){$(".portfolio-filter ul li").removeClass("sel-item"),$(this).addClass("sel-item");var t=$(this).attr("data-filter");$(".portfolio-items").isotope({filter:t,animationOptions:{duration:750,easing:"linear",queue:!1}})}))}),$(function(){"use strict";var t=$(window);function o(){$("#home").css({height:$(window).height()+"px"})}o(),t.resize(o),$.scrollIt({upKey:38,downKey:40,easing:"swing",scrollTime:600,activeClass:"active",onPageChange:null,topOffset:-15}),t.on("scroll",function(){var o=t.scrollTop(),a=$(".navbar");o>300?a.addClass("fixed-top"):a.removeClass("fixed-top")}),function(){if($("section.stats").length>0){var t=0;$(window).on("scroll",function(){var o=$("section.stats").offset().top-window.innerHeight;0==t&&$(window).scrollTop()>o&&($("section.stats .single-stat .counter").each(function(){var t=$(this),o=t.attr("data-count");$({countNum:t.text()}).animate({countNum:o},{duration:2e3,easing:"swing",step:function(){t.text(Math.floor(this.countNum))},complete:function(){t.text(this.countNum)}})}),t=1)})}}(),$(".nav-item .nav-link").on("click",function(){$(".navbar-collapse").removeClass("show")}),t.stellar({horizontalScrolling:!1}),$(".portfolio .link").magnificPopup({delegate:"a",type:"image",gallery:{enabled:!0}}),$(".blogs .owl-carousel").owlCarousel({loop:!0,margin:30,autoplay:!0,smartSpeed:500,responsiveClass:!0,dots:!1,responsive:{0:{items:1},700:{items:2},1e3:{items:3}}}),$(".testimonials .owl-carousel").owlCarousel({items:1,loop:!0,autoplay:!0,smartSpeed:500}),$("#contact-form").on("submit",function(t){t.preventDefault();$(this).attr("action");$("#form-submit").val("Wait...");var o=$("#contact-name").val(),a=$("#contact-email").val(),e=$("#contact-message").val(),n=0;$(".con-validate",this).each(function(){""==$(this).val()?($(this).addClass("con-error"),n+=1):$(this).hasClass("con-error")&&($(this).removeClass("con-error"),n>0&&(n-=1))}),0===n?$.ajax({type:"POST",url:"mail.php",data:{con_name:o,con_email:a,con_message:e},success:function(t){$("#contact-form input, #contact-form textarea").val(""),$("#contact-submit.primary-button span").html("Done!"),$("#contact-submit.primary-button").addClass("ok"),console.log(t)},error:function(t,o){$("#contact-submit.primary-button span").html("Failed!")}}):console.log("Validation Error")}),$(".con-validate").keyup(function(){$(this).removeClass("con-error")})});
+$(window).on("load", function () {
+    setTimeout(function () {
+        $(".preloader").addClass("loaded");
+    }, 1000);
+
+    if ($(".portfolio-items").length) {
+        $(".portfolio-items").isotope();
+
+        $(".portfolio-filter ul li").on("click", function () {
+            $(".portfolio-filter ul li").removeClass("sel-item");
+            $(this).addClass("sel-item");
+
+            var filter = $(this).attr("data-filter");
+
+            $(".portfolio-items").isotope({
+                filter: filter,
+                animationOptions: {
+                    duration: 750,
+                    easing: "linear",
+                    queue: false
+                }
+            });
+        });
+    }
+});
+
+$(function () {
+    "use strict";
+
+    var win = $(window);
+
+    function homeHeight() {
+        $("#home").css({height: win.height() + "px"});
+    }
+
+    homeHeight();
+    win.resize(homeHeight);
+
+    $.scrollIt({
+        upKey: 38,
+        downKey: 40,
+        easing: "swing",
+        scrollTime: 600,
+        activeClass: "active",
+        onPageChange: null,
+        topOffset: -15
+    });
+
+    win.on("scroll", function () {
+        var scrollTop = win.scrollTop(),
+            navbar = $(".navbar");
+
+        if (scrollTop > 300) navbar.addClass("fixed-top");
+        else navbar.removeClass("fixed-top");
+    });
+
+    // Stats counter
+    (function () {
+        if ($("section.stats").length > 0) {
+            var started = 0;
+
+            win.on("scroll", function () {
+                var trigger = $("section.stats").offset().top - window.innerHeight;
+
+                if (started === 0 && win.scrollTop() > trigger) {
+                    $("section.stats .single-stat .counter").each(function () {
+                        var $this = $(this),
+                            countTo = $this.attr("data-count");
+
+                        $({countNum: $this.text()}).animate(
+                            {countNum: countTo},
+                            {
+                                duration: 2000,
+                                easing: "swing",
+                                step: function () {
+                                    $this.text(Math.floor(this.countNum));
+                                },
+                                complete: function () {
+                                    $this.text(this.countNum);
+                                }
+                            }
+                        );
+                    });
+
+                    started = 1;
+                }
+            });
+        }
+    })();
+
+    $(".nav-item .nav-link").on("click", function () {
+        $(".navbar-collapse").removeClass("show");
+    });
+
+    win.stellar({horizontalScrolling: false});
+
+    $(".portfolio .link").magnificPopup({
+        delegate: "a",
+        type: "image",
+        gallery: {enabled: true}
+    });
+
+    $(".blogs .owl-carousel").owlCarousel({
+        loop: true,
+        margin: 30,
+        autoplay: true,
+        smartSpeed: 500,
+        responsiveClass: true,
+        dots: false,
+        responsive: {
+            0: {items: 1},
+            700: {items: 2},
+            1000: {items: 3}
+        }
+    });
+
+    $(".testimonials .owl-carousel").owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        smartSpeed: 500
+    });
+
+    // Contact form
+    // $("#contact-form").on("submit", function (e) {
+    //     e.preventDefault();
+    //
+    //     $("#form-submit").val("Wait...");
+    //
+    //     var name = $("#contact-name").val(),
+    //         email = $("#contact-email").val(),
+    //         message = $("#contact-message").val(),
+    //         errorCount = 0;
+    //
+    //     $(".con-validate", this).each(function () {
+    //         if ($(this).val() === "") {
+    //             $(this).addClass("con-error");
+    //             errorCount++;
+    //         } else if ($(this).hasClass("con-error")) {
+    //             $(this).removeClass("con-error");
+    //             if (errorCount > 0) errorCount--;
+    //         }
+    //     });
+    //
+    //     if (errorCount === 0) {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "mail.php",
+    //             data: {
+    //                 con_name: name,
+    //                 con_email: email,
+    //                 con_message: message
+    //             },
+    //             success: function (result) {
+    //                 $("#contact-form input, #contact-form textarea").val("");
+    //                 $("#contact-submit.primary-button span").html("Done!");
+    //                 $("#contact-submit.primary-button").addClass("ok");
+    //                 console.log(result);
+    //             },
+    //             error: function () {
+    //                 $("#contact-submit.primary-button span").html("Failed!");
+    //             }
+    //         });
+    //     } else {
+    //         console.log("Validation Error");
+    //     }
+    // });
+
+    $(".con-validate").keyup(function () {
+        $(this).removeClass("con-error");
+    });
+});
