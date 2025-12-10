@@ -26,10 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # internal apps
-    'account_module.apps.AccountModuleConfig',
     'home_module.apps.HomeModuleConfig',
     # external apps
-    'django_render_partial',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +69,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-AUTH_USER_MODEL = 'account_module.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
